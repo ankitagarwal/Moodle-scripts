@@ -1,6 +1,9 @@
 Upgrade Script
-(Upgrades all your installs to latest code releases and runs the upgrade script)
 ==============
+
+What it does?
+--------------
+Upgrades all your installs to latest code releases and runs the upgrade script
 
 Version list
 --------------
@@ -16,7 +19,9 @@ Usage
 * Just run the bash script.
 * Don't blame me if it triggers a napalm blast in your system
 
-
+Facing issues?
+---------------
+* Fix them yourself :P
 
 Credits
 --------------
