@@ -76,7 +76,20 @@ abstract class Github_HttpClient implements Github_HttpClientInterface
     {
         return $this->request($path, $parameters, 'POST', $options);
     }
-
+    /**
+     * Send a delete request
+     *
+     * @param  string   $path            Request path
+     * @param  array    $parameters     POST Parameters
+     * @param  string   $httpMethod     HTTP method to use
+     * @param  array    $options        reconfigure the request for this call only
+     *
+     * @return array                    Data
+     */
+    public function delete($path, array $parameters = array(), array $options = array())
+    {
+        return $this->request($path, $parameters, 'DELETE', $options);
+    }
     /**
      * Send a request to the server, receive a response,
      * decode the response and returns an associative array

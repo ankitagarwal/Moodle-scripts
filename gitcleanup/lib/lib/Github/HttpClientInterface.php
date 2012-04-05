@@ -21,6 +21,18 @@ interface Github_HttpClientInterface
     public function get($path, array $parameters = array(), array $options = array());
 
     /**
+     * Send a delete request
+     *
+     * @param  string   $path            Request path
+     * @param  array    $parameters     POST Parameters
+     * @param  string   $httpMethod     HTTP method to use
+     * @param  array    $options        reconfigure the request for this call only
+     *
+     * @return array                    Data
+     */
+    public function delete($path, array $parameters = array(), array $options = array());
+
+    /**
      * Send a POST request
      *
      * @param  string   $path            Request path

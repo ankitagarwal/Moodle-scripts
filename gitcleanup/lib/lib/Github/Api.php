@@ -34,6 +34,21 @@ abstract class Github_Api implements Github_ApiInterface
     }
 
     /**
+     * Call any path,DELETE method
+     * Ex: $api->get('repos/show/my-username/my-repo')
+     *
+     * @param   string  $path            the GitHub path
+     * @param   array   $parameters       GET parameters
+     * @param   array   $requestOptions   reconfigure the request
+     * @return  array                     data returned
+     */
+    protected function delete($path, array $parameters = array(), $requestOptions = array())
+    {
+        return $this->client->delete($path, $parameters, $requestOptions);
+    }
+
+
+    /**
      * Call any path, POST method
      * Ex: $api->post('repos/show/my-username', array('email' => 'my-new-email@provider.org'))
      *

@@ -117,7 +117,19 @@ class Github_Client
     {
         return $this->getHttpClient()->post($path, $parameters, $requestOptions);
     }
-
+    /**
+     * Call any path, DELETE method
+     * Ex: $api->delete('repos/show/my-username/my-repo')
+     *
+     * @param   string  $path            the GitHub path
+     * @param   array   $parameters       parameters
+     * @param   array   $requestOptions   reconfigure the request
+     * @return  array                     data returned
+     */
+    public function delete($path, array $parameters = array(), $requestOptions = array())
+    {
+        return $this->getHttpClient()->delete($path, $parameters, $requestOptions);
+    }
     /**
      * Get the http client.
      *
@@ -166,6 +178,21 @@ class Github_Client
         }
 
         return $this->apis['issue'];
+    }
+
+
+    /**
+     * Get the ref API
+     *
+     * @return  Github_Api_Issue   the issue API
+     */
+    public function getRefApi()
+    {
+        if (!isset($this->apis['ref'])) {
+            $this->apis['ref'] = new Github_Api_Ref($this);
+        }
+
+        return $this->apis['ref'];
     }
 
     /**

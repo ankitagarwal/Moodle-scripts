@@ -4,6 +4,7 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+require_once 'lib/lib/Github/Autoloader.php';
 
 /* fetch the xml feed using curl
  *
@@ -76,4 +77,31 @@ function build_tracker_dataobject ($mdl, $elements) {
     $xml_tree = $xml_tree->channel->item;
     $return = process_xml_feed ($xml_tree, $elements);
     return $return;
+}
+/**
+ * Searching users, getting user information
+* and managing authenticated user account information.
+*
+* @link      http://develop.github.com/p/users.html
+* @author    Thibault Duplessis <thibault.duplessis at gmail dot com>
+* @license   MIT License
+*/
+class Github_Api_Ref extends Github_Api
+{
+
+    /**
+     * Delete a branch of a repository
+     * http://develop.github.com/p/repo.html
+     *
+     * @param   string  $username         the username
+     * @param   string  $repo             the name of the repo
+     * @return  array                     list of the repo branches
+     */
+    public function deleteBranch($username, $repo, $branch)
+    {
+        $response = $this->delete('repos/'.urlencode($username).'/'.urlencode($repo).'/git/refs/heads/'.urlencode($branch));
+
+        return $response;
+    }
+
 }
