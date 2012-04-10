@@ -98,7 +98,7 @@ class Github_Api_Ref extends Github_Api
      */
     public function deleteBranch($username, $repo, $branch)
     {
-        $response = $this->delete('repos/'.urlencode($username).'/'.urlencode($repo).'/git/refs/heads/'.urlencode($branch));
+        $response = $this->delete('repos/'.urlencode($username).'/'.urlencode($repo).'/git/refs/heads/'.urlencode($branch),array() ,array() ,'text');
         return $response;
     }
 
@@ -112,7 +112,7 @@ class Github_Api_Ref extends Github_Api
      */
     public function getBranch($username, $repo, $branch)
     {
-        $response = $this->get('repos/'.urlencode($username).'/'.urlencode($repo).'/git/refs/heads/'.urlencode($branch));
+        $response = $this->get('repos/'.urlencode($username).'/'.urlencode($repo).'/git/refs/heads/'.urlencode($branch),array(),array(),'text');
 
         return $response;
     }

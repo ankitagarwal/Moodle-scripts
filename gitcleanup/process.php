@@ -18,7 +18,6 @@ $resp = $github->authenticate(USERNAME, SEC, METHOD);
 if(!empty($resp)) {
     echo "Cannot Authenticate...terminating<br />";
 }
-
 $error = 0;
 foreach($branches as $branch) {
     if($error == ERROR) {
@@ -62,9 +61,9 @@ foreach($branches as $branch) {
                     print_r($resp);
                 if(isset($resp['url'])){
                    $error++;
-                   echo "Remote Delete unsuccessful. Error flag count $error <br />";
+                   echo "<br />Remote Delete unsuccessful. Error flag count $error <br />";
                 } else {
-                    echo "Success <br />";
+                 echo "Success <br />";
                 }
                 break;
         default: break;

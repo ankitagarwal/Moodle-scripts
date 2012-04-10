@@ -15,7 +15,7 @@ abstract class Github_HttpClient implements Github_HttpClientInterface
     protected $options = array(
         'protocol'   => 'https',
         'url'        => ':protocol://api.github.com/:path',
-        'format'     => 'json',
+        'format'     => 'text',
         'user_agent' => 'php-github-api (http://github.com/ornicar/php-github-api)',
         'http_port'  => 443,
         'timeout'    => 10,
@@ -116,7 +116,6 @@ abstract class Github_HttpClient implements Github_HttpClientInterface
 
         // get encoded response
         $response = $this->doRequest($url, $parameters, $httpMethod, $options);
-
         // decode response
         $response = $this->decodeResponse($response, $options);
 

@@ -70,4 +70,10 @@ class Github_HttpClient_Exception extends Exception
 
         parent::__construct($message, $code);
     }
+    public function returnMsg($message = null, $code = null) {
+        if (null === $message && null !== $code && array_key_exists((int) $code, self::$statusCodes)) {
+            $message = sprintf('HTTP %d: %s', $code, self::$statusCodes[(int) $code]);
+        }
+        return $message;
+    }
 }

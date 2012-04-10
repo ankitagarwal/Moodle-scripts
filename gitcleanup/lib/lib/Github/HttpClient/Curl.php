@@ -69,19 +69,23 @@ class Github_HttpClient_Curl extends Github_HttpClient
         );
 
         $response = $this->doCurlCall($curlOptions);
-        try{
+        try {
             if (!in_array($response['headers']['http_code'], array(0, 200, 201))) {
                 if($httpMethod === 'DELETE' and $response['headers']['http_code'] === 204){
                 } else {
                     throw new Github_HttpClient_Exception(null, (int) $response['headers']['http_code']);
                 }
             }
-
+        } catch (Github_HttpClient_Exception $e) {
+            //echo $e->returnMsg(null, (int) $response['headers']['http_code']);
+            return $e->returnMsg(null, (int) $response['headers']['http_code']);
+        }
+        try {
             if ($response['errorNumber'] != '') {
                 throw new Github_HttpClient_Exception('error '.$response['errorNumber']);
             }
         } catch (Github_HttpClient_Exception $e) {
-            return $e->getMessage();
+            return $e->returnMsg(null, (int) $response['headers']['http_code']);
         }
 
         return $response['response'];
