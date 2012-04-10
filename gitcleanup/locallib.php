@@ -79,12 +79,11 @@ function build_tracker_dataobject ($mdl, $elements) {
     return $return;
 }
 /**
- * Searching users, getting user information
-* and managing authenticated user account information.
+ * Managing references
 *
 * @link      http://develop.github.com/p/users.html
-* @author    Thibault Duplessis <thibault.duplessis at gmail dot com>
-* @license   MIT License
+* @author    Ankit Agarwal
+* @license   GPL 3 or later
 */
 class Github_Api_Ref extends Github_Api
 {
@@ -100,6 +99,20 @@ class Github_Api_Ref extends Github_Api
     public function deleteBranch($username, $repo, $branch)
     {
         $response = $this->delete('repos/'.urlencode($username).'/'.urlencode($repo).'/git/refs/heads/'.urlencode($branch));
+        return $response;
+    }
+
+    /**
+     * Get a branch of a repository
+     * http://develop.github.com/p/repo.html
+     *
+     * @param   string  $username         the username
+     * @param   string  $repo             the name of the repo
+     * @return  array                     list of the repo branches
+     */
+    public function getBranch($username, $repo, $branch)
+    {
+        $response = $this->get('repos/'.urlencode($username).'/'.urlencode($repo).'/git/refs/heads/'.urlencode($branch));
 
         return $response;
     }

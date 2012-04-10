@@ -46,17 +46,16 @@ class Github_HttpClient_Curl extends Github_HttpClient
 
         if (!empty($parameters)) {
             $queryString = utf8_encode(http_build_query($parameters, '', '&'));
-
             if ('GET' === $httpMethod) {
                 $url .= '?'.$queryString;
-            } elseif('DELETE' === $httpMethod) {
-                $curlOptions += array(curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE"));
             } else {
                 $curlOptions += array(
                     CURLOPT_POST => true,
                     CURLOPT_POSTFIELDS => $queryString
                 );
             }
+        } elseif('DELETE' === $httpMethod) {
+                $curlOptions += array( CURLOPT_CUSTOMREQUEST => "DELETE");
         }
 
         $curlOptions += array(
@@ -70,13 +69,19 @@ class Github_HttpClient_Curl extends Github_HttpClient
         );
 
         $response = $this->doCurlCall($curlOptions);
+        try{
+            if (!in_array($response['headers']['http_code'], array(0, 200, 201))) {
+                if($httpMethod === 'DELETE' and $response['headers']['http_code'] === 204){
+                } else {
+                    throw new Github_HttpClient_Exception(null, (int) $response['headers']['http_code']);
+                }
+            }
 
-        if (!in_array($response['headers']['http_code'], array(0, 200, 201, 204))) {
-            throw new Github_HttpClient_Exception(null, (int) $response['headers']['http_code']);
-        }
-
-        if ($response['errorNumber'] != '') {
-            throw new Github_HttpClient_Exception('error '.$response['errorNumber']);
+            if ($response['errorNumber'] != '') {
+                throw new Github_HttpClient_Exception('error '.$response['errorNumber']);
+            }
+        } catch (Github_HttpClient_Exception $e) {
+            return $e->getMessage();
         }
 
         return $response['response'];

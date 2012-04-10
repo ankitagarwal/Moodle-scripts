@@ -5,7 +5,8 @@ Helps you cleanup your github account, so that you can get rid of unused branche
 
 Version list
 --------------
-* 1.0 3/04/12 First version push
+* 0.5 3/04/12 First version push
+* 1.0 (beta) 
 
 Installation
 -----------------
@@ -25,6 +26,8 @@ To Do
 * Add support of oauth
 * Convert the script to use V3 of the github api
 * Pagination?
+* Debugging
+* Display the authentication exception properly.
 
 Please Note:-
 ----------------

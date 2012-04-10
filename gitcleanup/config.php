@@ -14,15 +14,24 @@ $limit = 10;
 // Edit the regex below if you use any other format than MDL-xxxx in your git branch name for specifing the MDL number
 $regex = '<MDL-([0-9]+)?>i';
 
+// Edit the regex below if you use any other format than mxx in your git branch name for specifing the Model version (ex m22 -22 stable)
+$regex2 = '<m(aster|[0-9]{2})>i';
+
 // Debug?
 define('DEBUG', true);
 
+// Number of errors , to trigger the termination of script execution
+define('ERROR', 5);
+
+// Github password, I will migrate script to oAuth, but untill I do you need to specifiy the pass
+define('SEC', 'xxxxxx');
+
 // Paths to Moodle instances
-$intances = array("19" => "/www/repos/istable19/",
-        "20" => "/www/repos/istable20/",
-        "21" => "/www/repos/istable21/",
-        "22" => "/www/repos/istable22/",
-        "master" => "/www/repos/imaster/",
+$instances = array("19" => "/var/www/stable/19/moodle",
+        "20" => "/var/www/stable/20/moodle",
+        "21" => "/var/www/stable/21/moodle",
+        "22" => "/var/www/stable/22/moodle",
+        "master" => "/var/www/stable/master/moodle",
 );
 // Uncomment the line below if your script is timing out (you probabily should reduce the value of $limit instead)
 // set_time_limit(0);
@@ -31,4 +40,4 @@ $intances = array("19" => "/www/repos/istable19/",
 // Getting the git class ready
 Github_Autoloader::register();
 $github = new Github_Client();
-$method = $github::AUTH_HTTP_PASSWORD;
+define('METHOD', $github::AUTH_HTTP_PASSWORD);
