@@ -6,6 +6,7 @@ Helps you cleanup your github account, so that you can get rid of unused branche
 Version list
 --------------
 * 0.5 3/04/12 First version push
+* 1.0 (Alpha) 10/01/12 Alpha push
 * 1.0 (beta) 
 
 Installation
@@ -28,6 +29,7 @@ To Do
 * Pagination?
 * Debugging
 * Display the authentication exception properly.
+* Add support to distinguish between local and remote branches of git.
 
 Please Note:-
 ----------------
@@ -37,4 +39,4 @@ changes as well:)
 
 Credits
 -----------------
-* It must be the energy of Spartans that drove me to write this crapy script :D, so lets just thank their god Zeus :)
+* It must be the energy of Spartans that drove me to write this script :D, so lets just thank their god Zeus :)
