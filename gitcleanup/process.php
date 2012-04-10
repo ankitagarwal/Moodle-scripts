@@ -19,7 +19,6 @@ if(!empty($resp)) {
     echo "Cannot Authenticate...terminating<br />";
 }
 
-$branches = array('MDL-23415-m22');
 $error = 0;
 foreach($branches as $branch) {
     if($error == ERROR) {
