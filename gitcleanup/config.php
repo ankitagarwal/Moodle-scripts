@@ -26,6 +26,9 @@ define('ERROR', 5);
 // Github password, I will migrate script to oAuth, but untill I do you need to specifiy the pass
 define('SEC', 'xxxxxx');
 
+// Branch name format (used by cherry-pick script only) (xxxx will be replaced by mdl number and yy by stable version)
+define('BRANCHFORMAT', 'MDL-xxxx-myy');
+
 // Paths to Moodle instances
 $instances = array("19" => "/var/www/stable/19/moodle",
         "20" => "/var/www/stable/20/moodle",

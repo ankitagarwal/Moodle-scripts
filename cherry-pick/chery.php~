@@ -1,0 +1,22 @@
+<?php
+/**
+* @copyright  2012 Ankit Agarwal
+* @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+*/
+require_once '../gitcleanup/config.php';
+?>
+This scripts copies commits from local branches
+<form name='form' method='post' action=process.php>
+Branchname <input type='text' name='branchname' /><br />
+From <select name="from">
+<option value="19">19</option>
+<option value="20" >20</option>
+<option value="21" >21</option>
+<option value="22" >22</option>
+<option value="master" selected="selected">master</option>
+</select>< br/>
+To 
+<input type=checkbox name='list[]' value="19" />19
+<input type=checkbox name='list[]' value="20" />20
+<input type=checkbox name='list[]' value="21" />21
+<input type=checkbox name='list[]' value="master" />Master

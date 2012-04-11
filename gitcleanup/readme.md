@@ -30,6 +30,7 @@ To Do
 * Debugging
 * Display the authentication exception properly.
 * Add support to distinguish between local and remote branches of git.
+* Clean script and improve css
 
 Please Note:-
 ----------------

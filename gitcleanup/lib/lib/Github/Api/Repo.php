@@ -325,9 +325,9 @@ class Github_Api_Repo extends Github_Api
      * @param   string  $repo             the name of the repo
      * @return  array                     list of the repo branches
      */
-    public function getRepoBranches($username, $repo)
+    public function getRepoBranches($username, $repo, $options)
     {
-        $response = $this->get('repos/'.urlencode($username).'/'.urlencode($repo).'/branches');
+        $response = $this->get('repos/'.urlencode($username).'/'.urlencode($repo).'/branches', array(), $options);
 
         return $response;
     }

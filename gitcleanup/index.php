@@ -9,7 +9,7 @@ require_once 'locallib.php';
 require_once 'style.css';
 
 // Fetch all branches
-$branches =  $github->getRepoApi()->getRepoBranches(USERNAME, REPO);
+$branches =  $github->getRepoApi()->getRepoBranches(USERNAME, REPO, array('format' => 'json'));
 $header = "<form name='form' method='post' action=process.php><table id=data wdith = 100%>
             <tr>
                 <th>SL No</th>

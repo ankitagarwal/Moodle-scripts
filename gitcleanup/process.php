@@ -24,7 +24,7 @@ foreach($branches as $branch) {
         echo "Too Many errors....terminating<br />";
         die();
     }
-    echo "Deleting $branch <br />";
+    echo "<b>Deleting $branch</b> <br />";
     flush();
     switch($option) {
         case 3:
