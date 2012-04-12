@@ -1,4 +1,0 @@
- #!/bin/bash
-
-echo "branch to copy ". $1
-echo "Number of commits to port ".$2 
