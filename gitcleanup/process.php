@@ -19,10 +19,25 @@ if(!empty($resp)) {
     echo "Cannot Authenticate...terminating<br />";
 }
 $error = 0;
+echo "<b> Please note that due to some cache issues with developer API,
+        the branches are removed from cache only after a push (any push)</b><br />"
 foreach($branches as $branch) {
     if($error == ERROR) {
         echo "Too Many errors....terminating<br />";
         die();
+    }
+    $ver = preg_match($regex2, $branch, $res);
+    if($ver) {
+        if(in_array($res[1], array(19, 20, 21, 22))) {
+            $version = $res[1];
+            $ver_stable = "MOODLE_".$version."_STABLE";
+        } else {
+            $version = $res[0];
+            $ver_stable = $version;
+        }
+    } else {
+        echo "<b>Cannot determine the version of $branch</b> <br />";
+        continue;
     }
     echo "<b>Deleting $branch</b> <br />";
     flush();
@@ -31,18 +46,11 @@ foreach($branches as $branch) {
         case 1:
             echo "Deleting Local $branch <br />";
                 $last = false;
-                $ver = preg_match($regex2, $branch, $res);
-                if($ver) {
-                    if(in_array($res[1], array(19, 20, 21, 22))) {
-                        $version = $res[1];
-                        $ver_stable = "MOODLE_".$version."_STABLE";
-                    } else {
-                        $version = $res[0];
-                        $ver_stable = $version;
-                    }
-                   $last =  system("cd ".$instances[$version]."; git checkout $ver_stable; git branch -D ".$branch, $ret);
-                }
-                if(empty($last)) {
+                $last =  system("cd ".$instances[$version].";
+                                git reset --hard;
+                                git checkout $ver_stable;
+                                git branch -D ".$branch, $ret);
+                if(empty($last) || preg_match('/needs merge/is', $last)) {
                     $error++;
                     echo "Local Delete unsuccessful. Error flag count $error <br />";
                 } else {
@@ -53,17 +61,35 @@ foreach($branches as $branch) {
                 }
         case 2:
                 echo "Deleting Remote $branch <br />";
+               /* // Try doing deleteing stuff from shell
+                echo "cd ".$instances[$version].";
+                                git reset --hard;
+                                git checkout $ver_stable;
+                                git push ". GITHUB ." :$branch";
+
+                $last = system("cd ".$instances[$version].";
+                                git reset --hard;
+                                git checkout $ver_stable;
+                                git push ". GITHUB ." :refs/heads/".GITHUB."/".$branch);
+                if(empty($last) || preg_match('/needs merge/is', $last)) {
+                    $error++;
+                    echo "Remote Delete unsuccessful. Error flag count $error <br />";
+                } else {
+                echo "Success <br />";
+                }*/
+                // Use Github api to delete remote branch
                 $resp = $github->getRefApi()->deleteBranch(USERNAME, REPO, $branch);
                 if(DEBUG)
                     print_r($resp);
                 $resp = $github->getRefApi()->getBranch(USERNAME, REPO, $branch);
                 if(DEBUG)
                     print_r($resp);
-                if(isset($resp['url'])){
-                   $error++;
-                   echo "<br />Remote Delete unsuccessful. Error flag count $error <br />";
+                if(!is_array($resp) && preg_match('/HTTP 404/s', $resp)){
+                    echo "Success <br />";
                 } else {
-                 echo "Success <br />";
+                    $error++;
+                    echo "<br />Remote Delete unsuccessful. Error flag count $error <br />";
+
                 }
                 break;
         default: break;

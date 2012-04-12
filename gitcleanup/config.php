@@ -9,7 +9,7 @@ define('REPO', 'moodle');
 $elements = array('title', 'resolution', 'status', 'assignee', 'component', 'updated');
 
 // Number of branches to show by default, set it to 0 to show all (it can take long time to build the list for all your branches)
-$limit = 10;
+$limit = 0;
 
 // Edit the regex below if you use any other format than MDL-xxxx in your git branch name for specifing the MDL number
 $regex = '<MDL-([0-9]+)?>i';
@@ -23,9 +23,14 @@ define('DEBUG', true);
 // Number of errors , to trigger the termination of script execution
 define('ERROR', 5);
 
-// Github password, I will migrate script to oAuth, but untill I do you need to specifiy the pass
+// FUTURE USE Github password, I will migrate script to oAuth, but untill I do you need to specifiy the pass
 define('SEC', 'xxxxxx');
 
+// Name of the remote ref
+define('GITHUB', 'github');
+
+//Name of the upstream ref
+define('ORIGIN', 'origin');
 // Branch name format (used by cherry-pick script only) (xxxx will be replaced by mdl number and yy by stable version)
 define('BRANCHFORMAT', 'MDL-xxxx-myy');
 

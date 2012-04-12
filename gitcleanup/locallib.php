@@ -96,7 +96,7 @@ class Github_Api_Ref extends Github_Api
      * @param   string  $repo             the name of the repo
      * @return  array                     list of the repo branches
      */
-    public function deleteBranch($username, $repo, $branch)
+    public function deleteBranch($username, $repo, $branch, $sha)
     {
         $response = $this->delete('repos/'.urlencode($username).'/'.urlencode($repo).'/git/refs/heads/'.urlencode($branch),array() ,array('format' =>'json'));
         return $response;

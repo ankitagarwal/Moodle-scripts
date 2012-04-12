@@ -10,7 +10,7 @@ require_once 'style.css';
 
 // Fetch all branches
 $branches =  $github->getRepoApi()->getRepoBranches(USERNAME, REPO, array('format' => 'json'));
-$header = "<form name='form' method='post' action=process.php><table id=data wdith = 100%>
+$header = "<form name='inputform' method='post' action=process.php><table id=data wdith = 100%>
             <tr>
                 <th>SL No</th>
                 <th>Select</th>
@@ -53,7 +53,7 @@ foreach($branches as $branch) {
     }
     $row .= "</tr>";
     echo $row;
-    if($i === $limit && $limit !== 0)
+    if($i == $limit && $limit != 0)
         break;
 }
 echo "</table>";
@@ -64,7 +64,7 @@ echo '
 <option value="3" >Delete both local and remote branches</option>
 </select><br />
 <input type="button" name="CheckAll" value="Check All"
-onClick="checkAll(document.form.list)">
+onClick="checkAll(document.form.list[])">
 <input type="button" name="UnCheckAll" value="Uncheck All"
 onClick="uncheckAll(document.form.list)">
 <input type="submit" name="submit" value="submit">
