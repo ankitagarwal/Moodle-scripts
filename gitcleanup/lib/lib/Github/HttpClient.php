@@ -129,6 +129,8 @@ abstract class Github_HttpClient implements Github_HttpClientInterface
      */
     protected function decodeResponse($response, array $options)
     {
+        if(preg_match('/HTTP [0-9]{3}/si',$response))
+           return $response;
         if ('text' === $options['format']) {
             return $response;
         } elseif ('json' === $options['format']) {
