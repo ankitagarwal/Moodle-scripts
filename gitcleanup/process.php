@@ -20,7 +20,7 @@ if(!empty($resp)) {
 }
 $error = 0;
 echo "<b> Please note that due to some cache issues with developer API,
-        the branches are removed from cache only after a push (any push)</b><br />"
+        the branches are removed from cache only after a push (any push)</b><br />";
 foreach($branches as $branch) {
     if($error == ERROR) {
         echo "Too Many errors....terminating<br />";
