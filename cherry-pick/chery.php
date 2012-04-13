@@ -60,8 +60,13 @@ To
     $res[1] = str_ireplace('MDL', '', $res[1]);
 
     foreach($to as $version) {
-        $branch = str_replace(array('xxxx', 'yy'), array($res[1], $version), BRANCHFORMAT);
-        $stable = "MOODLE_".$version."_STABLE";
+        if($version == 'master') {
+            $branch = str_ireplace(array('xxxx', 'myy'), array($res[1], $version), BRANCHFORMAT);
+            $stable = 'master';
+        } else {
+            $branch = str_ireplace(array('xxxx', 'yy'), array($res[1], $version), BRANCHFORMAT);
+            $stable = "MOODLE_".$version."_STABLE";
+        }
         $cmd = "cd ".$instances[$version]. ";
                 git reset --hard;
                 git checkout -b $branch ".ORIGIN."/".$stable. ";
