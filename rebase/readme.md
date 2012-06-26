@@ -6,6 +6,7 @@ Helps you rebase your branches
 Version list
 --------------
 * 0.5
+* 1.0 (Alpha) 26 Jun 2012
 
 Installation
 -----------------

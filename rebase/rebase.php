@@ -17,7 +17,7 @@ echo "Which versions needs to be rebased? \n (Example 20 21 master 22) \n Press 
 $line = fgets($handle);
 $to = trim($line);
 if (empty($to)) {
-    $to = array ('20', '21', '22', 'master');
+    $to = array ('20', '21', '22', '23', 'master');
 } else {
     explode(' ', $to);
 }

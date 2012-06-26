@@ -8,6 +8,7 @@ Version list
 * 0.5	      10 Apr 2012
 * 1.0 (Alpha) 12 Apr 2012
 * 1.1 (Alpha) 13 Apr 2012
+* 1.2 (Beta) 26 Jun 2012
 
 Installation
 -----------------

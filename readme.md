@@ -12,6 +12,7 @@ Please look at indivisual readme of those scripts to get a better understanding 
 Version list
 --------------
 * 1.0 (Aplha) 13 Apr 2012
+* 1.1 (Beta)  26 Jun 2012
 
 Installation
 -----------------
