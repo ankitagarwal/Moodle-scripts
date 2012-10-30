@@ -1,23 +1,22 @@
 Git cleanup
 =============
 
-Helps you rebase your branches
+Creates a dump of patches for all existing local brnaches along with a codechecker dump
 
 Version list
 --------------
-* 0.5
-* 1.0 (Alpha) 26 Jun 2012
+* 1.0 (Alpha) 30 Oct 2012
 
 Installation
 -----------------
 * Git cleanup script must already be installed
 * Copy all files to any folder in your www director
 * Edit gitcleanup/config.php as per your needs
-* run "php rebase.php" from bash
+* run "php codecheck.php" from bash
+* Codechecer must be installed in stable master moodle install
 
 To Do
 -----------------
-* Cleanup the output
 * change include paths to absolute
 
 Please Note:-
