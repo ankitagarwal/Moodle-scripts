@@ -39,6 +39,25 @@ if(empty($mdl) || empty($res[1])) {
 }
 $res[1] = str_ireplace('MDL', '', $res[1]);
 
+// Run code checker (Master only atm)
+$runcode = 'echo "Running Code checker...get ready for awesomeness"
+            cd '.$instances['master'].'/
+            git reset --hard origin/master
+            git checkout '.$branchname.'
+            git diff origin/master > temp.diff
+            php local/codechecker/run.php temp.diff
+            rm temp.diff
+            echo "Do you want to continue ? Type y/Y for yes"
+            read answer
+            if [ "$answer" != "y" ]; then
+                kill -9 $PPID
+            else
+                echo "Proceding with the cherry-pick...\n"
+            fi';
+
+if (RUN_CODECHECKER) {
+    system($runcode);
+}
 foreach($to as $version) {
     if($version == 'master') {
         $branch = str_ireplace(array('xxxx', 'myy'), array($res[1], $version), BRANCHFORMAT);

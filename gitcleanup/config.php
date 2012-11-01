@@ -34,6 +34,9 @@ define('ORIGIN', 'origin');
 // Branch name format (used by cherry-pick script only) (xxxx will be replaced by mdl number and yy by stable version)
 define('BRANCHFORMAT', 'MDL-xxxx-myy');
 
+// Run codechecker before doing cherry-pick?
+define('RUN_CODECHECKER', true);
+
 // Paths to Moodle instances
 $instances = array("19" => "/var/www/stable/19/moodle",
         "20" => "/var/www/stable/20/moodle",
