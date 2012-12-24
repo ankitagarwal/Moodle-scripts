@@ -11,7 +11,19 @@ git reset --hard origin/master
 php admin/cli/upgrade.php --non-interactive --allow-unstable
 php admin/cli/cron.php
 git reset --hard origin/master
-php admin/tool/phpunit/cli/init.php
+
+
+echo "--"
+echo "Integration MOODLE_24_STABLE"
+cd /var/www/int/24/moodle
+mv config.php ../; git checkout *; mv ../config.php ./
+git fetch --all --prune
+git checkout master
+git pull
+git reset --hard origin/master
+php admin/cli/upgrade.php --non-interactive --allow-unstable
+php admin/cli/cron.php
+git reset --hard origin/master
 
 echo "--"
 echo "Integration MOODLE_23_STABLE"
@@ -75,6 +87,19 @@ php admin/cli/cron.php
 git reset --hard origin/master
 
 echo "--"
+echo "MOODLE_24_STABLE"
+cd /var/www/stable/24/moodle
+mv config.php ../; git checkout *; mv ../config.php ./
+git fetch --all --prune
+git checkout MOODLE_23_STABLE
+git pull
+git push github refs/remotes/origin/MOODLE_24_STABLE:MOODLE_24_STABLE
+git reset --hard origin/MOODLE_24_STABLE
+php admin/cli/upgrade.php --non-interactive --allow-unstable
+php admin/cli/cron.php
+git reset --hard origin/MOODLE_24_STABLE
+
+echo "--"
 echo "MOODLE_23_STABLE"
 cd /var/www/stable/23/moodle
 mv config.php ../; git checkout *; mv ../config.php ./
@@ -113,3 +138,19 @@ git reset --hard origin/MOODLE_21_STABLE
 php admin/cli/upgrade.php --non-interactive --allow-unstable
 php admin/cli/cron.php
 git reset --hard origin/MOODLE_21_STABLE
+
+echo "--"
+echo "Intialising php units...this might take a while"
+cd /var/www/int/master/moodle
+php admin/tool/phpunit/cli/init.php
+cd /var/www/int/24/moodle
+php admin/tool/phpunit/cli/init.php
+cd /var/www/int/23/moodle
+php admin/tool/phpunit/cli/init.php
+cd /var/www/stable/master/moodle
+php admin/tool/phpunit/cli/init.php
+cd /var/www/stable/24/moodle
+php admin/tool/phpunit/cli/init.php
+cd /var/www/stable/23/moodle
+php admin/tool/phpunit/cli/init.php
+

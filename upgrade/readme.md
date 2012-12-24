@@ -8,6 +8,7 @@ Upgrades all your installs to latest code releases and runs the upgrade script
 Version list
 --------------
 * 1.0 3/04/12 First version push
+* 1.1 24/12/12 Adding support for 24 stable
 
 Installation
 ---------------
