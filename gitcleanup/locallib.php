@@ -16,6 +16,7 @@ function get_file_remote ($url) {
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_HEADER, false);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     $xml = curl_exec($ch);
     curl_close($ch);
     return $xml;
@@ -66,7 +67,7 @@ function generate_xml_tree($xml) {
 * @return mixed value of requested fields or false
 */
 function build_tracker_dataobject ($mdl, $elements) {
-    $url = "http://tracker.moodle.org/sr/jira.issueviews:searchrequest-xml/temp/SearchRequest.xml?jqlQuery=id=".$mdl."&tempMax=1000";
+    $url = "https://tracker.moodle.org/sr/jira.issueviews:searchrequest-xml/temp/SearchRequest.xml?jqlQuery=id=".$mdl."&tempMax=1000";
     $xml = get_file_remote ($url);
     if (empty($xml))
         return false;

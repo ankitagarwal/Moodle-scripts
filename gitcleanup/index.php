@@ -10,7 +10,8 @@ require_once 'style.css';
 
 // Fetch all branches
 $branches =  $github->getRepoApi()->getRepoBranches(USERNAME, REPO, array('format' => 'json'));
-$header = "<form name='inputform' method='post' action=process.php><table id=data wdith = 100%>
+$header = "<title>Git cleanup script</title>
+           <form name='inputform' method='post' action=process.php><table id=data wdith = 100%>
             <tr>
                 <th>SL No</th>
                 <th>Select</th>
@@ -27,7 +28,7 @@ foreach($branches as $branch) {
     $i++;
     $mdl = preg_match($regex, $branch['name'], $res);
     if(!empty($mdl)) {
-        $trackerurl = "<a href=http://tracker.moodle.org/browse/".$res[0].">Tracker URL </a>";
+        $trackerurl = "<a href=https://tracker.moodle.org/browse/".$res[0].">Tracker URL </a>";
         $trackerdata = build_tracker_dataobject ($res[0], $elements);
     } else {
         $trackerurl = "";

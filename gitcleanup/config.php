@@ -43,6 +43,7 @@ $instances = array("19" => "/var/www/stable/19/moodle",
         "21" => "/var/www/stable/21/moodle",
         "22" => "/var/www/stable/22/moodle",
         "23" => "/var/www/stable/23/moodle",
+        "24" => "/var/www/stable/24/moodle",
         "master" => "/var/www/stable/master/moodle",
 );
 // Uncomment the line below if your script is timing out (you probabily should reduce the value of $limit instead)
