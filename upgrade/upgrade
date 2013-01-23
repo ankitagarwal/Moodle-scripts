@@ -20,10 +20,10 @@ mv config.php ../; git checkout *; mv ../config.php ./
 git fetch --all --prune
 git checkout master
 git pull
-git reset --hard origin/master
+git reset --hard origin/MOODLE_24_STABLE
 php admin/cli/upgrade.php --non-interactive --allow-unstable
 php admin/cli/cron.php
-git reset --hard origin/master
+git reset --hard origin/MOODLE_24_STABLE
 
 echo "--"
 echo "Integration MOODLE_23_STABLE"
